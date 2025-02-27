@@ -16,6 +16,7 @@ import { addToFav, removeFromFav } from "../../redux/slices/favSlice";
 const ProductCard = ({ product, isCartItem = false }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
   const fav = useSelector((state) => state.fav);
 
@@ -31,8 +32,6 @@ const ProductCard = ({ product, isCartItem = false }) => {
 
   
   const isProductInCart = cart.products.some((item) => item.id === product.id);
-
-  
   const productInCart = cart.products.find((item) => item.id === product.id);
   const quantity = productInCart ? productInCart.quantity : 0;
 

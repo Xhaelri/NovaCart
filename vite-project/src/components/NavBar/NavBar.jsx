@@ -5,11 +5,11 @@ import { FiUser } from "react-icons/fi";
 
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useContext, useState, useEffect } from "react";
-import { ThemeContext } from "../../Context/ThemeProvider";
+import {  useTheme } from "../../Context/ThemeProvider";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
 const NavBar = () => {
-  const { theme, setTheme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useTheme();
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);

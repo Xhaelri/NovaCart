@@ -158,7 +158,7 @@ const Register = () => {
                     <p className="text-red-500 text-sm mt-1">{errors.terms.message}</p>
                   )}
 
-                  {/* Submit Button */}
+                  {registerError && <p className="text-red-700">{registerError}</p>}
                   <button
                     type="submit"
                     disabled={registerLoading}

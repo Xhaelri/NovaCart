@@ -11,7 +11,6 @@ const Products = () => {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
-console.log(products)
 
   return (
     <div>

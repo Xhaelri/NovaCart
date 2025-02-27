@@ -1,23 +1,36 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { PiEyeLight } from "react-icons/pi";
+
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+
 import { useParams, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/axiosinstance";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
+} from "../redux/slices/cartSlice";
+import { addToFav, removeFromFav } from "../redux/slices/favSlice";
+import { handleProductId } from "../Services/products";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data, isLoading, isError } = useQuery({
+  const fav = useSelector((state) => state.fav);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
+  const {
+    data: product,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ["PRODUCTS", id],
-    queryFn: async () => {
-      try {
-        const res = await axiosInstance.get(`/products/${id}`);
-        return res.data;
-      } catch (error) {
-        console.log("api error", error);
-        throw error;
-      }
-    },
+    queryFn: () => handleProductId(id),
   });
 
   if (isLoading) {
@@ -28,39 +41,125 @@ const ProductDetails = () => {
     return <div>Error fetching product details. Please try again later.</div>;
   }
 
+  const isProductInCart = cart.products.some((item) => item.id === product.id);
+  const isProductInFav = fav.products.some((item) => item.id === product.id);
+  const productInCart = cart.products.find((item) => item.id === product.id);
+
+  const quantity = productInCart ? productInCart.quantity : 0;
+
+  const handleFavAction = () => {
+    if (isProductInFav) {
+      dispatch(removeFromFav(product));
+    } else {
+      dispatch(addToFav(product));
+    }
+  };
+
+  const handleCartAction = () => {
+    if (isProductInCart) {
+      dispatch(removeFromCart(product));
+    } else {
+      dispatch(addToCart(product));
+    }
+  };
+
+  const handleIncreaseQuantity = () => {
+    dispatch(increaseQuantity(product));
+  };
+
+  const handleDecreaseQuantity = () => {
+    dispatch(decreaseQuantity(product));
+  };
   return (
-    <div className="container mx-4 sm:mx-[10%] p-4">
-      <button
-        onClick={() => navigate(-1)}
-        className="mb-4 px-4 py-2 bg-black text-white border border-gray rounded hover:opacity-80"
-      >
-        Back
-      </button>
-      {data ? (
-        <div className="flex flex-col md:flex-row gap-8">
-          <div className="w-full md:w-1/2 lg:w-1/3">
-            <div className="bg-[#F5F5F5] p-4 flex justify-center items-center">
-              <img
-                src={data.image}
-                alt={data.title}
-                className="w-full h-auto max-h-[400px] object-contain"
-              />
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 lg:w-2/3">
-            <h1 className="text-3xl text-black font-bold mb-4">{data.title}</h1>
-            <p className="text-2xl font-semibold text-red-700 mb-4">
-              ${data.price}
-            </p>
-            <p className="text-gray-700 mb-4">{data.description}</p>
-            <button className="px-6 py-2 bg-black text-white rounded hover:opacity-80">
-              Add to Cart
-            </button>
-          </div>
+    <div key={product.id} className="w-[270px] h-[350px] relative">
+      <div className="bg-[#F5F5F5] w-[270px] h-[250px] flex justify-center items-center relative cursor-pointer group">
+        <div className="flex flex-col justify-start items-end p-2 absolute top-0 right-0 space-y-2">
+          {isProductInFav ? (
+            <AiFillHeart
+              onClick={handleFavAction}
+              className="text-red-500 bg-white rounded-full p-1 text-3xl cursor-pointer transition-colors duration-300"
+            />
+          ) : (
+            <AiOutlineHeart
+              onClick={handleFavAction}
+              className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-red-500 transition-colors duration-300"
+            />
+          )}
+
+          <PiEyeLight
+            onClick={() => {
+              navigate(`/products/${product.id}`);
+              scrollTo(0, 0);
+            }}
+            className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-blue-500 transition-colors duration-300"
+          />
         </div>
-      ) : (
-        <div>No product data found.</div>
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-[190px] h-[180px] object-contain mb-[16px] transition-transform duration-300 group-hover:scale-105 relative"
+        />
+        <button
+          onClick={handleCartAction}
+          className={`bg-black text-white cursor-pointer absolute bottom-0 w-full px-4 py-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+            isProductInCart ? "bg-gray-500 opacity-100" : ""
+          }`}
+        >
+          {isProductInCart ? "Remove from Cart" : "Add to Cart"}
+        </button>
+      </div>
+
+      {isProductInCart && (
+        <div className="flex justify-center items-center space-x-3 mt-2 absolute bottom-7 right-0">
+          <button
+            onClick={handleDecreaseQuantity}
+            className="px-[8px] py-[0.1px] bg-gray-500 text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
+          >
+            -
+          </button>
+          <span className="text-black">{quantity}</span>
+          <button
+            onClick={handleIncreaseQuantity}
+            className="px-[7px] py-[0.1px] bg-gray-500 text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
+          >
+            +
+          </button>
+        </div>
       )}
+
+      <h1 className="font-bold truncate mb-[8px] text-black mt-3">
+        {product.title}
+      </h1>
+      <p className="font-semibold text-red-700">${product.price.toFixed(2)}</p>
+
+      <div className="rating rating-xs">
+        <input
+          type="radio"
+          name={`rating-${product.id}`}
+          className="mask mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name={`rating-${product.id}`}
+          className="mask mask-star-2 bg-orange-400"
+          defaultChecked
+        />
+        <input
+          type="radio"
+          name={`rating-${product.id}`}
+          className="mask mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name={`rating-${product.id}`}
+          className="mask mask-star-2 bg-orange-400"
+        />
+        <input
+          type="radio"
+          name={`rating-${product.id}`}
+          className="mask mask-star-2 bg-orange-400"
+        />
+      </div>
     </div>
   );
 };

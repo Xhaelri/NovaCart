@@ -12,7 +12,6 @@ export const fetchLogin = createAsyncThunk(
       if (response.data[0].password !== user.password) {
         throw new Error("Invalid credentials");
       }
-
       return response.data[0];
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -75,43 +74,39 @@ const authSlice = createSlice({
 export default authSlice.reducer;
  */
 
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { signup, login, logout } from "../../components/Firebase/Firebase"; // Import Firebase methods
+import { signup, login, logout } from "../../components/Firebase/Firebase";
 
-// Firebase Login
 export const fetchLogin = createAsyncThunk(
   "auth/login",
   async (user, thunkAPI) => {
     try {
-      await login(user.email, user.password); // Use Firebase login
-      return { email: user.email }; // Return user data (you can customize this)
+      await login(user.email, user.password);
+      return { email: user.email };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Firebase Register
 export const fetchRegister = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
-      await signup(user.name, user.email, user.password); // Use Firebase signup
-      return { name: user.name, email: user.email }; // Return user data (you can customize this)
+      await signup(user.name, user.email, user.password);
+      return { name: user.name, email: user.email };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-// Firebase Logout
 export const fetchLogout = createAsyncThunk(
   "auth/logout",
   async (_, thunkAPI) => {
     try {
-      await logout(); // Use Firebase logout
-      return null; // Clear user data
+      await logout();
+      return null;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -134,7 +129,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // Login
     builder
       .addCase(fetchLogin.pending, (state) => {
         state.loginLoading = true;
@@ -142,14 +136,13 @@ const authSlice = createSlice({
       })
       .addCase(fetchLogin.fulfilled, (state, action) => {
         state.loginLoading = false;
-        state.user = action.payload; // Set user data
+        state.user = action.payload;
       })
-      .addCase(fetchLogin.rejected, (state, action) => {
+      .addCase(fetchLogin.rejected, (state) => {
         state.loginLoading = false;
-        state.loginError = action.payload; // Set login error
+        state.loginError = "Invalid credentials";
       });
 
-    // Register
     builder
       .addCase(fetchRegister.pending, (state) => {
         state.registerLoading = true;
@@ -157,18 +150,16 @@ const authSlice = createSlice({
       })
       .addCase(fetchRegister.fulfilled, (state, action) => {
         state.registerLoading = false;
-        state.user = action.payload; // Set user data
+        state.user = action.payload;
       })
-      .addCase(fetchRegister.rejected, (state, action) => {
+      .addCase(fetchRegister.rejected, (state) => {
         state.registerLoading = false;
-        state.registerError = action.payload; // Set register error
+        state.registerError = "Email already in use";
       });
 
-    // Logout
-    builder
-      .addCase(fetchLogout.fulfilled, (state) => {
-        state.user = null; // Clear user data
-      });
+    builder.addCase(fetchLogout.fulfilled, (state) => {
+      state.user = null;
+    });
   },
 });
 

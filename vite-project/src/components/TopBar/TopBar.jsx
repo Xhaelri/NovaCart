@@ -1,11 +1,10 @@
-// TopBar.jsx
-import { useContext } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
-import { ThemeContext } from "../../Context/ThemeProvider";
+import { useTheme } from "../../Context/ThemeProvider";
 
 const TopBar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const {  toggleTheme } = useTheme();
 
   return (
     <div className="bg-black text-white py-2 flex flex-row relative justify-between items-center">

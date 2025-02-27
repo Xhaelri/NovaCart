@@ -2,11 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import registerImg from "../../assets/register.png";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { fetchLogin } from "../../redux/slices/authSlice";
 const Login = () => {
     const{loginError , loginLoading} = useSelector((state)=>state.auth)
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const {
     register,
@@ -17,7 +18,8 @@ const Login = () => {
   const onSubmit = (data) => {
     dispatch(fetchLogin(data)).unwrap()
     .then(() => {
-      alert("Login successful");
+      console.log("Login successful");
+      navigate("/")
     })
     .catch((error) => {
       console.error("Login failed:", error);
@@ -86,6 +88,7 @@ const Login = () => {
                     type="submit"
                     disabled={loginLoading}
                     className="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                   
                   >
                     {loginLoading ? "Logging in..." : "Login"}
                   </button>
