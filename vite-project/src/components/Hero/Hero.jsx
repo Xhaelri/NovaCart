@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="border-e-2 border-gray-200 pt-13 -ms-2 ">
         <ul className="menu bg-transparent rounded-box w-56 text-black p-0 ">
           <li>
-            <details close>
+            <details >
               <summary>Woman's Fashion</summary>
               <ul>
                 <li>
@@ -19,7 +19,7 @@ const Hero = () => {
             </details>
           </li>
           <li>
-            <details close>
+            <details >
               <summary>Men's Fashion</summary>
               <ul>
                 <li>

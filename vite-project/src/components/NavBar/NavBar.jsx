@@ -1,21 +1,39 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FiUser } from "react-icons/fi";
 
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ThemeContext } from "../../Context/ThemeProvider";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { fetchLogout } from "../../redux/slices/authSlice";
 const NavBar = () => {
   const { theme, setTheme, toggleTheme } = useContext(ThemeContext);
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
-  const user = useSelector((state) => state.user.user);
-  const location = useLocation();
+  const user = useSelector((state) => state.auth.user);
 
-  const hideIcons = location.pathname === "/signup";
+  const navigate = useNavigate();
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const location = useLocation();
+  const hideIcons =
+    location.pathname === "/signup" || location.pathname === "/login";
+
+  const dispatch = useDispatch();
+
+  const handleLogOut = (data) => {
+    dispatch(fetchLogout(data))
+      .unwrap()
+      .then(() => {
+        alert("Logout successful");
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+      });
+  };
 
   return (
     <div>
@@ -133,10 +151,66 @@ const NavBar = () => {
                 )}
               </div>
               {user && (
-              <div>
-                <FiUser className="cursor-pointer hover:text-gray-500" />
-              </div>
-                
+                <div>
+                  <FiUser
+                    className="cursor-pointer hover:text-gray-500"
+                    onMouseDown={() => setShowMenu(!showMenu)}
+                  />
+                  {showMenu && (
+                    <div
+                      onMouseLeave={() => setShowMenu(false)}
+                      className="relative"
+                    >
+                      <div
+                        className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg   bg-gradient-to-r from-white/10 to-black/90 backdrop-blur-3xl ring-1 ring-black/5"
+                        role="menu"
+                      >
+                        <div className="p-2">
+                          <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                            role="menuitem"
+                            onClick={() => navigate("/account")}
+                          >
+                            Manage My Account
+                          </a>
+
+                          <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                            role="menuitem"
+                          >
+                            View Warehouse Info
+                          </a>
+
+                          <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                            role="menuitem"
+                          >
+                            Duplicate Product
+                          </a>
+
+                          <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                            role="menuitem"
+                          >
+                            Unpublish Product
+                          </a>
+                          <a
+                            href="#"
+                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                            role="menuitem"
+                            onClick={handleLogOut}
+                          >
+                            Logout
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           )}

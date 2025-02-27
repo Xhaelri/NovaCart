@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchLogin } from "../../redux/slices/authSlice";
 const Login = () => {
-    const{loginError} = useSelector((state)=>state.auth)
+    const{loginError , loginLoading} = useSelector((state)=>state.auth)
   const dispatch = useDispatch();
 
   const {
@@ -16,12 +16,12 @@ const Login = () => {
 
   const onSubmit = (data) => {
     dispatch(fetchLogin(data)).unwrap()
-        .then((originalPromiseResult) => {
-        console.log(originalPromiseResult)
-      })
-      .catch((rejectedValueOrSerializedError) => {
-        console.log(rejectedValueOrSerializedError)
-      });
+    .then(() => {
+      alert("Login successful");
+    })
+    .catch((error) => {
+      console.error("Login failed:", error);
+    });
   };
 
   return (
@@ -84,15 +84,15 @@ const Login = () => {
                   {loginError && <p className="text-red-700">{loginError}</p>}
                   <button
                     type="submit"
+                    disabled={loginLoading}
                     className="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
-                    Login
+                    {loginLoading ? "Logging in..." : "Login"}
                   </button>
 
                   <div className="text-sm font-light text-gray-500">
-                    
-                    <NavLink to="/" className="font-medium text-primary-600 hover:underline">
-                      Forgot password?
+                    <NavLink to="/signup" className="font-medium text-primary-600 hover:underline">
+                      Don't have an account? Register here
                     </NavLink>
                   </div>
                 </form>
@@ -104,5 +104,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;

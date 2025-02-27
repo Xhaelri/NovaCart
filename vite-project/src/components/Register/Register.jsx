@@ -1,12 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import registerImg from "../../assets/register.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../../redux/slices/authSlice";
 import { NavLink } from "react-router-dom";
 /* import {login,signup} from "../../firebase/firebaseConfig"
  */
 const Register = () => {
+  const {registerLoading, registerError} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const {
@@ -17,12 +18,16 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    dispatch(fetchRegister(data));
-    alert("Registration successful");
+    dispatch(fetchRegister(data)).unwrap()
+    .then(() => {
+      alert("Registration successful");
+    })
+    .catch((error) => {
+      console.error("Registration failed:", error);
+    });
   };
 
   const password = watch("password");
-
   return (
     <div className="grid grid-cols-2 py-[60px]">
       <div>
@@ -156,9 +161,10 @@ const Register = () => {
                   {/* Submit Button */}
                   <button
                     type="submit"
+                    disabled={registerLoading}
                     className="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   >
-                    Create an account
+                    {registerLoading ? "Registering..." : "Create an account"}
                   </button>
 
                   {/* Login Link */}

@@ -16,6 +16,8 @@ import Cart from "./pages/Cart";
 import WishList from "./pages/WishList";
 import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
+import Account from "./pages/Account";
+import ProtectedRoute from "./pages/ProtectedRoute";
 const App = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -34,12 +36,20 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
-            <Route path="/signup" element={<SignUp />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishlist" element={<WishList />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
+            <Route
+              path="/account"
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </ThemeProvider>
