@@ -1,0 +1,124 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "title": "The north coat",
+            "price": 100,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229796/The_north_coat_xfreth.png"
+        },
+        {
+            "id": "2",
+            "title": "ASUS FHD Gaming Laptop",
+            "price": 200,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229795/ASUS_FHD_Gaming_Laptop_alsem4.png"
+        },
+        {
+            "id": "3",
+            "title": "Quilted Satin Jacket",
+            "price": 300,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229794/Quilted_Satin_Jacket_uyydnb.png"
+        },
+        {
+            "id": "5",
+            "title": "RGP liquid CPU Cooler",
+            "price": 500,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229793/RGB_liquid_CPU_Cooler_k2hvju.png"
+        },
+        {
+            "id": "4",
+            "title": "GP11 Shooter USB Gamepad",
+            "price": 400,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229793/GP11_Shooter_USB_Gamepad_cxnuvy.png"
+        },
+        {
+            "id": "6",
+            "title": "Jr. Zoom Soccer Cleats",
+            "price": 600,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229792/Jr._Zoom_Soccer_Cleats_wozmfw.png"
+        },
+        {
+            "id": "7",
+            "title": "Small BookSelf",
+            "price": 700,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229792/Small_BookSelf_cpfule.png"
+        },
+        {
+            "id": "8",
+            "title": "Curology Product Set",
+            "price": 800,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229792/Curology_Product_Set_safjuf.png"
+        },
+        {
+            "id": "9",
+            "title": "Gucci duffle bag",
+            "price": 900,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229790/Gucci_duffle_bag_defidd.png"
+        },
+        {
+            "id": "10",
+            "title": "Canon EOS DSLR Camera",
+            "price": 1000,
+            "image": "https://res.cloudinary.com/dzdnady6n/image/upload/v1740229790/CANON_EOS_DSLR_Camera_r4ojg1.png"
+        }
+    ],
+    "users": [
+        {
+            "id": "1",
+            "name": "User 1",
+            "email": "9rPbM@example.com",
+            "password": "password1"
+        },
+        {
+            "id": "2",
+            "name": "User 2",
+            "email": "a5TlH@example.com",
+            "password": "password2"
+        },
+        {
+            "id": "3",
+            "name": "User 3",
+            "email": "a5TlH@example.com",
+            "password": "password3"
+        }
+    ],
+    "orders": [
+        {
+            "id": "1",
+            "user_id": "1",
+            "product_id": "1",
+            "quantity": 2
+        },
+        {
+            "id": "2",
+            "user_id": "2",
+            "product_id": "2",
+            "quantity": 3
+        },
+        {
+            "id": "3",
+            "user_id": "3",
+            "product_id": "3",
+            "quantity": 4
+        }
+    ],
+    "cart": [
+        {
+            "id": "1",
+            "user_id": "1",
+            "product_id": "1",
+            "quantity": 2
+        },
+        {
+            "id": "2",
+            "user_id": "2",
+            "product_id": "2",
+            "quantity": 3
+        },
+        {
+            "id": "3",
+            "user_id": "3",
+            "product_id": "3",
+            "quantity": 4
+        }
+    ]
+}
