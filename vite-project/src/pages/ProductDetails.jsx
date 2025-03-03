@@ -1,11 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { PiEyeLight } from "react-icons/pi";
-
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-
 import { useParams, useNavigate } from "react-router-dom";
-import axiosInstance from "../utils/axiosinstance";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -14,28 +9,17 @@ import {
   decreaseQuantity,
 } from "../redux/slices/cartSlice";
 import { addToFav, removeFromFav } from "../redux/slices/favSlice";
-import { handleProductId } from "../Services/products";
+import useProductById from "../Hooks/useProductById";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const { product, isLoading, isError } = useProductById(id);
+  const dispatch = useDispatch();
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
 
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["PRODUCTS", id],
-    queryFn: () => handleProductId(id),
-  });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <Loader />;
 
   if (isError) {
     return <div>Error fetching product details. Please try again later.</div>;
@@ -77,12 +61,12 @@ const ProductDetails = () => {
           {isProductInFav ? (
             <AiFillHeart
               onClick={handleFavAction}
-              className="text-red-500 bg-white rounded-full p-1 text-3xl cursor-pointer transition-colors duration-300"
+              className="text-[#DB4444] bg-white rounded-full p-1 text-3xl cursor-pointer transition-colors duration-300"
             />
           ) : (
             <AiOutlineHeart
               onClick={handleFavAction}
-              className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-red-500 transition-colors duration-300"
+              className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-[#DB4444] transition-colors duration-300"
             />
           )}
 
@@ -163,5 +147,7 @@ const ProductDetails = () => {
     </div>
   );
 };
-
+const Loader = () => {
+  return <div>Loading...</div>;
+};
 export default ProductDetails;

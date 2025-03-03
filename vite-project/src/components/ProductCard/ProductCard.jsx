@@ -24,23 +24,21 @@ const ProductCard = ({ product, isCartItem = false }) => {
 
   const handleFavAction = () => {
     if (isProductInFav) {
-      dispatch(removeFromFav(product)); 
+      dispatch(removeFromFav(product));
     } else {
-      dispatch(addToFav(product)); 
+      dispatch(addToFav(product));
     }
   };
 
-  
   const isProductInCart = cart.products.some((item) => item.id === product.id);
   const productInCart = cart.products.find((item) => item.id === product.id);
   const quantity = productInCart ? productInCart.quantity : 0;
 
-  
   const handleCartAction = () => {
     if (isProductInCart) {
-      dispatch(removeFromCart(product)); 
+      dispatch(removeFromCart(product));
     } else {
-      dispatch(addToCart(product)); 
+      dispatch(addToCart(product));
     }
   };
 
@@ -59,22 +57,24 @@ const ProductCard = ({ product, isCartItem = false }) => {
           {isProductInFav ? (
             <AiFillHeart
               onClick={handleFavAction}
-              className="text-red-500 bg-white rounded-full p-1 text-3xl cursor-pointer transition-colors duration-300"
+              className="text-[#DB4444] bg-white rounded-full p-1 text-3xl cursor-pointer transition-colors duration-300"
             />
           ) : (
             <AiOutlineHeart
               onClick={handleFavAction}
-              className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-red-500 transition-colors duration-300"
+              className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-[#DB4444] transition-colors duration-300"
             />
           )}
 
-          <PiEyeLight onClick={() => {
-            navigate(`/products/${product.id}`);
-            scrollTo(0, 0);
-          }} className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-blue-500 transition-colors duration-300" />
+          <PiEyeLight
+            onClick={() => {
+              navigate(`/products/${product.id}`);
+              scrollTo(0, 0);
+            }}
+            className="text-black bg-white rounded-full p-1 text-3xl cursor-pointer hover:text-blue-500 transition-colors duration-300"
+          />
         </div>
         <img
-          
           src={product.image}
           alt={product.title}
           className="w-[190px] h-[180px] object-contain mb-[16px] transition-transform duration-300 group-hover:scale-105 relative"

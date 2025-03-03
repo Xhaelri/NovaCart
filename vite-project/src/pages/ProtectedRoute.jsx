@@ -4,7 +4,8 @@ import { Outlet, Navigate } from "react-router-dom";
 
 const ProtectedRoute = () => {
   const user = useSelector((state) => state.auth.user);
-  console.log("User in ProtectedRoute:", user); // Debugging: Log the user
+  console.log("User in ProtectedRoute:", user);
+  getProductById;
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
 

@@ -1,5 +1,4 @@
 import {
-  BrowserRouter,
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
@@ -7,8 +6,7 @@ import { ThemeProvider } from "./Context/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import Nav from "./components/Nav/Nav";
-import Footer from "./components/Footer/Footer";
+
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -22,7 +20,6 @@ import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import AppLayout from "./components/AppLayout/AppLayout";
 
-// ✅ Create a new Query Client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -31,7 +28,6 @@ const queryClient = new QueryClient({
   },
 });
 
-// ✅ Define Routes using createBrowserRouter
 const router = createBrowserRouter([
   {
     path: "/",
@@ -85,7 +81,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-// ✅ Wrap everything inside RouterProvider
 const App = () => {
   return (
     <Provider store={store}>

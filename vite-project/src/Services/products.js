@@ -1,6 +1,6 @@
 import axiosInstance from "../utils/axiosinstance";
 
-const handleProductId = async (id) => {
+const getProductById = async (id) => {
   try {
     const res = await axiosInstance.get(`/products/${id}`);
     return res.data;
@@ -10,9 +10,9 @@ const handleProductId = async (id) => {
   }
 };
 
-const handleAllProducts = async () => {
+const getAllProducts = async () => {
   const res = await axiosInstance.get("/products");
   return res.data;
 };
 
-export { handleProductId, handleAllProducts };
+export { getProductById, getAllProducts };

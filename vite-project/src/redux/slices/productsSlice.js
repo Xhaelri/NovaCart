@@ -1,10 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axiosInstance from "../../utils/axiosinstance";
-import { handleAllProducts } from "../../Services/products";
+import { getAllProducts } from "../../Services/products";
 //async params for handling rejected promises
-const fetchAllProducts = createAsyncThunk("products/getAll", handleAllProducts);
-
-
+const fetchAllProducts = createAsyncThunk("products/getAll", getAllProducts);
 
 const productsSlice = createSlice({
   name: "products",

@@ -1,11 +1,13 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { IoCartOutline } from "react-icons/io5";
 import { FiUser } from "react-icons/fi";
+import {  AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { useContext, useState, useEffect } from "react";
-import {  useTheme } from "../../Context/ThemeProvider";
+import { useTheme } from "../../Context/ThemeProvider";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
 const NavBar = () => {
@@ -17,6 +19,7 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const location = useLocation();
   const hideIcons =
@@ -119,16 +122,15 @@ const NavBar = () => {
             </form>
           </div>
           {!hideIcons && (
-            <div className="flex flex-row items-center space-x-4">
+            <div className="flex flex-row items-center space-x-1.5">
               <div className="relative">
                 <NavLink to="/wishlist">
-                  <FontAwesomeIcon
-                    icon={regularHeart}
-                    className="cursor-pointer hover:text-red-500"
+                  <AiOutlineHeart
+                    className="cursor-pointer hover:text-[#DB4444] w-[22px] h-6"
                   />
                 </NavLink>
                 {fav.totalQuantity > 0 ? (
-                  <span className="h-3 w-3 bg-red-500 rounded-full absolute top-[-1px] right-[-5px] text-[9px] text-center text-white">
+                  <span className="h-4 w-4 bg-[#DB4444] rounded-full absolute top-[-5px] right-[-5px] text-[9px] flex justify-center items-center text-white">
                     {fav.totalQuantity}
                   </span>
                 ) : (
@@ -137,13 +139,12 @@ const NavBar = () => {
               </div>
               <div className="relative">
                 <NavLink to="/cart">
-                  <FontAwesomeIcon
-                    icon={faCartShopping}
-                    className="cursor-pointer hover:text-gray-500"
+                  <IoCartOutline 
+                    className="cursor-pointer hover:text-gray-500 -me-1  w-6 h-6"
                   />
                 </NavLink>
                 {cart.totalQuantity > 0 ? (
-                  <span className="h-3 w-3 bg-red-500 rounded-full absolute top-[-1px] right-[-5px] text-[9px] text-center text-white">
+                  <span className="h-4 w-4 bg-[#DB4444] rounded-full absolute top-[-5px] right-[-5px] text-[9px] flex justify-center items-center text-white">
                     {cart.totalQuantity}
                   </span>
                 ) : (
@@ -151,62 +152,66 @@ const NavBar = () => {
                 )}
               </div>
               {user && (
-                <div>
-                  <FiUser
-                    className="cursor-pointer hover:text-gray-500"
-                    onMouseDown={() => setShowMenu(!showMenu)}
-                  />
+                <div className="relative">
+                  <button
+                    onClick={() => setShowMenu(!showMenu)}
+                    onMouseEnter={() => setIsActive(true)}
+                    className={`relative flex justify-center items-center p-1 rounded-full transition-all duration-200 ${
+                      showMenu ? "bg-[#DB4444] text-white" : "hover:bg-gray-300"
+                    }`}
+                  >
+                    <AiOutlineUser className="cursor-pointer w-5 h-5" />
+                  </button>
+
                   {showMenu && (
                     <div
-                      onMouseLeave={() => setShowMenu(false)}
-                      className="relative"
+                      onMouseLeave={() => {
+                        setShowMenu(false);
+                        setIsActive(false);
+                      }}
+                      className="absolute right-0 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg bg-gradient-to-r from-white/10 to-black/90 backdrop-blur-3xl ring-1 ring-black/5 z-10"
                     >
-                      <div
-                        className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg   bg-gradient-to-r from-white/10 to-black/90 backdrop-blur-3xl ring-1 ring-black/5"
-                        role="menu"
-                      >
-                        <div className="p-2">
-                          <a
-                            href="#"
-                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                            role="menuitem"
-                            onClick={() => navigate("/account")}
-                          >
-                            Manage My Account
-                          </a>
+                      <div className="p-2">
+                        <a
+                          href="#"
+                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                          role="menuitem"
+                          onClick={() => navigate("/account")}
+                        >
+                          Manage My Account
+                        </a>
 
-                          <a
-                            href="#"
-                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                            role="menuitem"
-                          >
-                            View Warehouse Info
-                          </a>
+                        <a
+                          href="#"
+                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                          role="menuitem"
+                        >
+                          View Warehouse Info
+                        </a>
 
-                          <a
-                            href="#"
-                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                            role="menuitem"
-                          >
-                            Duplicate Product
-                          </a>
+                        <a
+                          href="#"
+                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                          role="menuitem"
+                        >
+                          Duplicate Product
+                        </a>
 
-                          <a
-                            href="#"
-                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                            role="menuitem"
-                          >
-                            Unpublish Product
-                          </a>
-                          <a
-                            href="#"
-                            className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                            role="menuitem"
-                            onClick={handleLogOut}
-                          >
-                            Logout
-                          </a>
-                        </div>
+                        <a
+                          href="#"
+                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                          role="menuitem"
+                        >
+                          Unpublish Product
+                        </a>
+                        <a
+                          href="#"
+                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
+                          role="menuitem"
+                          onClick={handleLogOut}
+                        >
+                          Logout
+                        </a>
                       </div>
                     </div>
                   )}
