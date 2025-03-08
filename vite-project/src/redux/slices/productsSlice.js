@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+/* import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getAllProducts } from "../../Services/products";
 //async params for handling rejected promises
 const fetchAllProducts = createAsyncThunk("products/getAll", getAllProducts);
@@ -31,3 +31,4 @@ const productsSlice = createSlice({
 
 export { fetchAllProducts };
 export default productsSlice.reducer;
+ */

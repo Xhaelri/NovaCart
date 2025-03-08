@@ -1,12 +1,9 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IoCartOutline } from "react-icons/io5";
-import { FiUser } from "react-icons/fi";
 import {  AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 
-import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
-import { useContext, useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "../../Context/ThemeProvider";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLogout } from "../../redux/slices/authSlice";
@@ -68,16 +65,16 @@ const NavBar = () => {
                 }`}
               />{" "}
             </NavLink>
-            <NavLink to="/signup">
-              <li className="py-1 font-light">Sign Up</li>
+            <NavLink to="/products">
+              <li className="py-1 font-light">Products</li>
               <hr
                 className={`border-none outline-none h-[1.5px] rounded-[50px] w-3/5 m-auto hidden ${
                   theme === "dark" ? "bg-white" : "bg-gray-700"
                 }`}
               />{" "}
             </NavLink>
-            <NavLink to="/products">
-              <li className="py-1 font-light">Products</li>
+            <NavLink to="/signup">
+              <li className="py-1 font-light">Sign Up</li>
               <hr
                 className={`border-none outline-none h-[1.5px] rounded-[50px] w-3/5 m-auto hidden ${
                   theme === "dark" ? "bg-white" : "bg-gray-700"
@@ -185,16 +182,18 @@ const NavBar = () => {
                           href="#"
                           className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
                           role="menuitem"
+                          onClick={() => navigate("/addproduct")}
                         >
-                          View Warehouse Info
+                          Add New Product
                         </a>
 
                         <a
                           href="#"
                           className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
                           role="menuitem"
+                          onClick={() => navigate("/adminpanel")}
                         >
-                          Duplicate Product
+                          Admin Panel
                         </a>
 
                         <a

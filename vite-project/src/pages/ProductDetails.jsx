@@ -115,6 +115,7 @@ const ProductDetails = () => {
         {product.title}
       </h1>
       <p className="font-semibold text-red-700">${product.price.toFixed(2)}</p>
+      <p className="font-semibold text-red-700">{product.createdAt}</p>
 
       <div className="rating rating-xs">
         <input

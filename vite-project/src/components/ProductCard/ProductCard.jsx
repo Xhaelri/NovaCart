@@ -1,6 +1,4 @@
-import React from "react";
 import { PiEyeLight } from "react-icons/pi";
-import { CiHeart } from "react-icons/ci";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 import { useNavigate } from "react-router-dom";
@@ -110,7 +108,7 @@ const ProductCard = ({ product, isCartItem = false }) => {
       <h1 className="font-bold truncate mb-[8px] text-black mt-3">
         {product.title}
       </h1>
-      <p className="font-semibold text-red-700">${product.price.toFixed(2)}</p>
+      <p className="font-semibold text-red-700">${product.price}</p>
 
       <div className="rating rating-xs">
         <input

@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux";
-import CartProduct from "../components/Cart/CartProduct";
+/* import React from 'react'
+import useGetAllProducts from '../../Hooks/useGetAllProducts';
 
-const Cart = () => {
-  const cart = useSelector((state) => state.cart);
-
-  return (
-    <div className="mx-4 sm:mx-[10%] grid grid-rows-2 pt-4 min-h-screen">
+const AdminProducts = () => {
+    const { products } = useGetAllProducts();
+    return (
+      <div className="mx-4 sm:mx-[10%] grid grid-rows-2 pt-4 min-h-screen">
       <div className="flex flex-col justify-start items-start ">
         <div className="mb-7  w-full  ">
           <table className="w-full">
@@ -15,11 +14,11 @@ const Cart = () => {
                   Product
                 </th>
                 <th className="text-center text-black font-medium">Price</th>
-                <th className="text-center text-black font-medium">Quantity</th>
-                <th className="text-center text-black font-medium">Subtotal</th>
+                <th className="text-center text-black font-medium">Delete</th>
+                <th className="text-center text-black font-medium">Update</th>
               </tr>
             </thead>
-            {cart.products?.map((product) => (
+            {products?.map((product) => (
               <CartProduct key={product.id} product={product} />
             ))}
           </table>
@@ -34,7 +33,7 @@ const Cart = () => {
             Update Cart
           </button>
         </div>
-
+  
         <div className="flex  justify-between items-start mb-10">
           <div className="flex gap-3.5 ">
             <input
@@ -46,7 +45,7 @@ const Cart = () => {
               Apply Coupon
             </button>
           </div>
-
+  
           <div className="p-6 bg-white rounded-[4px] shadow-md max-h-fit w-1/3 border border-black ">
             <h2 className="text-xl font-medium   px-4 text-black">Cart Total</h2>
             <div className="overflow-x-auto">
@@ -57,7 +56,7 @@ const Cart = () => {
                       Subtotal
                     </td>
                     <td className="py-4 px-4 text-end text-sm font-semibold text-gray-700">
-                      ${cart.totalPrice}
+                      $
                     </td>
                   </tr>
                   <tr className="border-b border-gray-300">
@@ -73,7 +72,7 @@ const Cart = () => {
                       Total
                     </td>
                     <td className="py-4 px-4 text-end text-sm font-semibold text-gray-700">
-                      ${cart.totalPrice}
+                      $
                     </td>
                   </tr>
                 </tbody>
@@ -88,7 +87,7 @@ const Cart = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default AdminProducts */

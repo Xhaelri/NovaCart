@@ -1,7 +1,4 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "./Context/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
@@ -19,6 +16,9 @@ import Login from "./components/Login/Login";
 import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import AppLayout from "./components/AppLayout/AppLayout";
+import AddProduct from "./components/ProductsHandling/AddProduct";
+import { ToastContainer } from "react-toastify";
+import AdminPanel from "./components/ProductsHandling/AdminPanel";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +48,14 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <ProductsPage />,
+      },
+      {
+        path: "/addproduct",
+        element: <AddProduct />,
+      },
+      {
+        path: "/adminpanel",
+        element: <AdminPanel />,
       },
       {
         path: "/products/:id",
@@ -89,6 +97,18 @@ const App = () => {
           <RouterProvider router={router} />
         </ThemeProvider>
       </QueryClientProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Provider>
   );
 };
