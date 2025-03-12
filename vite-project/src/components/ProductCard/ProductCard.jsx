@@ -50,6 +50,13 @@ const ProductCard = ({ product, isCartItem = false }) => {
 
   return (
     <div key={product.id} className="w-[270px] h-[350px] relative">
+        {product.discount && (
+      <div className="absolute top-5 left-5  z-10 ">
+          <span className="bg-[#DB4444] text-white text-sm font-light px-[12px] py-[4px] rounded-sm   ">
+            -{product.discount}%
+          </span>
+      </div>
+        )}
       <div className="bg-[#F5F5F5] w-[270px] h-[250px] flex justify-center items-center relative cursor-pointer group">
         <div className="flex flex-col justify-start items-end p-2 absolute top-0 right-0 space-y-2">
           {isProductInFav ? (
@@ -80,7 +87,7 @@ const ProductCard = ({ product, isCartItem = false }) => {
         <button
           onClick={handleCartAction}
           className={`bg-black text-white cursor-pointer absolute bottom-0 w-full px-4 py-2 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-            isProductInCart ? "bg-gray-500 opacity-100" : ""
+            isProductInCart ? "bg-black opacity-100" : ""
           }`}
         >
           {isProductInCart ? "Remove from Cart" : "Add to Cart"}
@@ -91,14 +98,14 @@ const ProductCard = ({ product, isCartItem = false }) => {
         <div className="flex justify-center items-center space-x-3 mt-2 absolute bottom-7 right-0">
           <button
             onClick={handleDecreaseQuantity}
-            className="px-[8px] py-[0.1px] bg-gray-500 text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
+            className="px-[8px] py-[0.1px] bg-black text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
           >
             -
           </button>
           <span className="text-black">{quantity}</span>
           <button
             onClick={handleIncreaseQuantity}
-            className="px-[7px] py-[0.1px] bg-gray-500 text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
+            className="px-[7px] py-[0.1px] bg-black text-white rounded-xl hover:bg-gray-900 transition-colors duration-300 cursor-pointer"
           >
             +
           </button>

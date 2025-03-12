@@ -17,7 +17,7 @@ const getProductById = async (id) => {
   try {
 
 
-    const productDoc = doc(db, "products", id); // Use Firebase-generated ID
+    const productDoc = doc(db, "products", id);
     const snapshot = await getDoc(productDoc);
 
     if (snapshot.exists()) {
@@ -60,8 +60,9 @@ const addProduct = async (product) => {
 
 const updateProduct = async (id, product) => {
   try {
+
     const productDoc = doc(db, "products", id);
-    await updateDoc(productDoc, product);
+    await updateDoc(productDoc, { ...product, createAt: serverTimestamp()});
     return { id, ...product };
   } catch (error) {
     console.error("Error updating product:", error);

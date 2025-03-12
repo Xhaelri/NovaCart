@@ -6,7 +6,7 @@ const Products = () => {
   const { products } = useGetAllProducts();
 
   return (
-    <div>
+    <div className="my-17">
       <div className="flex flex-col mt-5 mb-[60px]">
         <div className="flex space-x-2.5 items-center">
           <span className="w-[20px] h-[40px] bg-[#DB4444] rounded-sm"></span>
@@ -26,7 +26,7 @@ const Products = () => {
         </div>
       </div>
       <div className="flex flex-wrap justify-between">
-        {products?.slice(0, 4).map((product) => (
+        {products?.filter((product) => product.price > 500).sort((a, b) => b.price- a.price ).slice(0, 4).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

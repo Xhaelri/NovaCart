@@ -1,28 +1,51 @@
 import { useState } from "react";
 import AddProduct from "./AddProduct";
 import DeleteProduct from "./DeleteProduct";
+import { motion } from "framer-motion"; // For smooth transitions
 
 const AdminPanel = () => {
   const [activeComponent, setActiveComponent] = useState(null);
 
   return (
-    <div className="grid grid-cols-[20%_80%]">
-      <div className="border-e-2 border-gray-200 pt-5 flex justify-center h-screen">
-        <ul className="menu bg-transparent rounded-box w-56 text-black p-0">
+    <div className="flex   min-h-screen">
+      {/* Sidebar */}
+      <div className="w-1/5 min-w-[250px] bg-white border-r border-gray-200 p-5">
+        <h2 className="text-lg font-semibold text-gray-700 mb-4">
+          Admin Panel
+        </h2>
+        <ul className="space-y-2">
           <li>
-            <details>
-              <summary>Products</summary>
-              <ul>
+            <details className="group">
+              <summary className="flex items-center justify-between px-3 py-2 rounded-lg cursor-pointer text-gray-700 hover:bg-gray-100">
+                <span>Products</span>
+                <span className="transition-transform group-open:rotate-90">
+                  ▶
+                </span>
+              </summary>
+              <ul className="pl-4 space-y-2">
                 <li>
-                  <a
-                    onClick={() => setActiveComponent("AddProduct")} // Set active component
-                    className="cursor-pointer"
+                  <button
+                    onClick={() => setActiveComponent("AddProduct")}
+                    className={`w-full text-left px-3 py-2 rounded-lg ${
+                      activeComponent === "AddProduct"
+                        ? "bg-[#DB4444] text-white"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
                   >
                     Add New Product
-                  </a>
+                  </button>
                 </li>
                 <li>
-                  <a onClick={() => setActiveComponent("DeleteProduct")} className="cursor-pointer">Delete Product</a>
+                  <button
+                    onClick={() => setActiveComponent("DeleteProduct")}
+                    className={`w-full text-left px-3 py-2 rounded-lg ${
+                      activeComponent === "DeleteProduct"
+                        ? "bg-[#DB4444] text-white"
+                        : "text-gray-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    Delete Product
+                  </button>
                 </li>
               </ul>
             </details>
@@ -30,10 +53,30 @@ const AdminPanel = () => {
         </ul>
       </div>
 
-
-      <div className="w-full ">
-        {activeComponent === "AddProduct" && <AddProduct />} 
-        {activeComponent === "DeleteProduct" && <DeleteProduct />}
+      {/* Content Area */}
+      <div className="w-4/5 p-6 ">
+        {activeComponent === "AddProduct" && (
+          <motion.div
+            key="AddProduct"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AddProduct />
+          </motion.div>
+        )}
+        {activeComponent === "DeleteProduct" && (
+          <motion.div
+            key="DeleteProduct"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <DeleteProduct />
+          </motion.div>
+        )}
       </div>
     </div>
   );
