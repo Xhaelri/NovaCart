@@ -3,7 +3,7 @@ import img1 from "../../assets/Frame 684.png";
 import img2 from "../../assets/Frame 685.png";
 import img3 from "../../assets/Frame 686.png";
 import img4 from "../../assets/Frame 687.png";
-import icon1 from "../../assets/icon-Customer service.svg";
+import icon1 from "../../assets/icon-Customer-service.svg";
 import icon2 from "../../assets/icon-delivery.svg";
 import icon3 from "../../assets/icon-secure.svg";
 import { FiArrowUp } from "react-icons/fi";
