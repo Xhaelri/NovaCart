@@ -6,7 +6,7 @@ const ProductsPage = () => {
   const { products, isLoading, error } = useGetAllProducts();
 
   return (
-    <div className="mx-4 sm:mx-[10%]">
+    <div className="mx-4 sm:mx-[10%] mt-10 mb-15">
       <div>
         {isLoading && (
           <div className="flex justify-center items-center h-screen">
@@ -29,7 +29,7 @@ const ProductsPage = () => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
           {products?.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product}  initialRating={3}/>
           ))}
         </div>
       </div>

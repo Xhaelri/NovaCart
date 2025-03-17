@@ -50,7 +50,7 @@ const Category = () => {
             <span className="text-red-700 text-sm">Categories</span>
           </div>
           <div className="flex space-x-2.5 justify-between items-center">
-            <h1 className="text-3xl font-semibold text-black mt-5">
+            <h1 className="text-3xl font-semibold text-black mt-5 font-inter">
               Browse By Category
             </h1>
             <div className="flex flex-row space-x-2.5 items-center text-3xl text-gray-500 ">

@@ -64,7 +64,7 @@ const Hero = () => {
       </div>
 
       {/* Hero Carousel */}
-      <div className="pt-10 max-w-[892px] max-h-[344px]">
+      <div className="pt-10 max-w-[965px] max-h-[350px]">
         <Carousel
           showArrows={false}
           showStatus={false}
@@ -85,19 +85,19 @@ const Hero = () => {
             );
           }}
         >
-  <div className="w-[892px] h-[344px]">
+  <div className="w-[965px] h-[350px]">
     <img src={hero6} alt="Slide 1" className="w-full h-full object-center" />
   </div>
-  <div className="w-[892px] h-[344px]">
+  <div className="w-[965px] h-[350px]">
     <img src={hero1} alt="Slide 2" className="w-full h-full object-center" />
   </div>
-  <div className="w-[892px] h-[344px]">
+  <div className="w-[965px] h-[350px]">
     <img src={hero2} alt="Slide 3" className="w-full h-full object-center" />
   </div>
-  <div className="w-[892px] h-[344px]">
+  <div className="w-[965px] h-[350px]">
     <img src={hero3} alt="Slide 4" className="w-full h-full object-center" />
   </div>
-  <div className="w-[892px] h-[344px]">
+  <div className="w-[965px] h-[350px]">
     <img src={hero4} alt="Slide 5" className="w-full h-full object-center" />
   </div>
         </Carousel>

@@ -7,6 +7,7 @@ const store = configureStore({
         cart:cartReducer,
         fav:favReducer,
         auth:authReducer,
+        
     },
 
 })

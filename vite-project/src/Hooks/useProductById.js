@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../Services/products";
 
 function useProductById(id) {
-  console.log("Product ID in hook:", id);
   
   const {
     data: product,
@@ -11,6 +10,8 @@ function useProductById(id) {
   } = useQuery({
     queryKey: ["PRODUCTS", id],
     queryFn: () => getProductById(id),
+    enabled: !!id,
+    retry: 2
   });
   
   return { product, isLoading, isError };

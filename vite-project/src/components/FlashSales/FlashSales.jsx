@@ -28,6 +28,7 @@ const FlashSales = () => {
 
   return (
     <div className="relative mb-17 flex flex-col ">
+
       {/* Section Header */}
       <div className="flex flex-col mt-5 mb-[60px]">
         <div className="flex space-x-2.5 items-center">
@@ -37,7 +38,7 @@ const FlashSales = () => {
 
         <div className="flex justify-between items-center relative">
             <div className="flex space-x-20">
-          <h1 className="text-3xl font-semibold text-black mt-5">
+          <h1 className="text-4xl font-semibold text-black mt-5 font-inter">
             Flash Sales
           </h1>
           <CountdownTimer targetDate={targetDate}/>
@@ -65,12 +66,13 @@ const FlashSales = () => {
       </div>
 
       {/* Product Carousel */}
-      <div ref={carouselRef} className="flex overflow-x-auto no-scrollbar space-x-12  scroll-smooth max-w-screen">
+      <div ref={carouselRef} className="flex py-9 overflow-x-auto overflow-y-hidden no-scrollbar gap-13 scroll-smooth max-w-screen">
         {products?.map((product) => (
           <div key={product.id}>
             <ProductCard key={product.id} product={product} />
           </div>
         ))}
+
       </div>
       
       <div className="flex justify-center mt-10">

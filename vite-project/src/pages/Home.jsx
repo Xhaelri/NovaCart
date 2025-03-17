@@ -4,6 +4,8 @@ import Category from "../components/Category/Category";
 import HrRuler from "../components/HrRuler/HrRuler";
 import Hero from "../components/Hero/Hero";
 import FlashSales from "../components/FlashSales/FlashSales";
+import OurProducts from "../components/OurProducts/OurProducts";
+import NewArrival from "../components/NewArrival/NewArrival";
 
 const Home = () => {
   return (
@@ -15,6 +17,8 @@ const Home = () => {
         <Category />
         <HrRuler />
         <Products />
+        <OurProducts/>
+        <NewArrival/>
       </div>
     </div>
   );

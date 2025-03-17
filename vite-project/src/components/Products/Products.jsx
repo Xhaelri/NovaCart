@@ -13,8 +13,8 @@ const Products = () => {
           <span className="text-red-700 text-sm">This Month</span>
         </div>
         <div className="flex space-x-2.5 justify-between items-center">
-          <h1 className="text-3xl font-semibold text-black mt-5">
-            Best Selling Products
+        <h1 className="text-3xl font-semibold text-black mt-5 font-inter">
+        Best Selling Products
           </h1>
           <Link
             to="/products"
@@ -25,9 +25,9 @@ const Products = () => {
           </Link>
         </div>
       </div>
-      <div className="flex flex-wrap justify-between">
+      <div className="grid grid-cols-4 gap-13">
         {products?.filter((product) => product.price > 500).sort((a, b) => b.price- a.price ).slice(0, 4).map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product}  />
         ))}
       </div>
     </div>

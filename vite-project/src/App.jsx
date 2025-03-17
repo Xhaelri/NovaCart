@@ -19,6 +19,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import AddProduct from "./components/ProductsHandling/AddProduct";
 import { ToastContainer } from "react-toastify";
 import AdminPanel from "./components/ProductsHandling/AdminPanel";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -83,6 +84,12 @@ const router = createBrowserRouter([
           <ProtectedRoute>
             <Account />
           </ProtectedRoute>
+        ),
+      },
+      {
+        path: "*",
+        element: (
+          <NotFound/>
         ),
       },
     ],

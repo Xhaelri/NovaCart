@@ -93,14 +93,14 @@ const NavBar = () => {
                 <input
                   type="search"
                   id="default-search"
-                  className="block w-full min-w-[250px] p-1 ps-3 text-sm text-gray-900 border-none rounded-[4px] bg-[#F5F5F5] focus:ring-0 focus:outline-none"
+                  className="block w-full min-w-[250px] p-2 ps-3 text-xs text-gray-900 border-none rounded-[4px] bg-[#F5F5F5] focus:ring-0 focus:outline-none"
                   placeholder="What are you looking for?"
                   required
                 />
                 <div className="absolute inset-y-0 end-0 flex items-center pe-4">
                   <button className="cursor-pointer">
                     <svg
-                      className="w-4 h-4 text-gray-500"
+                      className="w-4 h-4 text-black"
                       aria-hidden="true"
                       fill="none"
                       viewBox="0 0 20 20"
@@ -166,7 +166,7 @@ const NavBar = () => {
                         setShowMenu(false);
                         setIsActive(false);
                       }}
-                      className="absolute right-0 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg bg-gradient-to-r from-white/10 to-black/90 backdrop-blur-3xl ring-1 ring-black/5 z-10"
+                      className="absolute right-0 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg bg-black/65 backdrop-blur-3xl ring-1 ring-black/5 z-10"
                     >
                       <div className="p-2">
                         <a
