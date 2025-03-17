@@ -1,13 +1,13 @@
 import { useState } from "react";
 import about from "../assets/about.png";
-import icon1 from "../assets/Icon-Customer service.svg";
-import icon2 from "../assets/Icon-delivery.svg";
-import icon3 from "../assets/Icon-secure.svg";
+import icon1 from "../assets/icon-Customer service.svg";
+import icon2 from "../assets/icon-delivery.svg";
+import icon3 from "../assets/icon-secure.svg";
 
 import icon4 from "../assets/icon_shop.svg";
-import icon5 from "../assets/Icon-Sale-Hollow-White.svg";
-import icon6 from "../assets/Icon-Shopping bag.svg";
-import icon7 from "../assets/Icon-Moneybag.svg";
+import icon5 from "../assets/icon-Sale-Hollow-White.svg";
+import icon6 from "../assets/icon-Shopping bag.svg";
+import icon7 from "../assets/icon-Moneybag.svg";
 
 import icon4b from "../assets/icon_shop_black_hollow.svg";
 import icon5b from "../assets/Icon-Sale.svg";
@@ -15,7 +15,7 @@ import icon6b from "../assets/Icon-Shopping-Bag-Black.svg";
 import icon7b from "../assets/Icon-Moneybag-Black.svg";
 
 import social1 from "../assets/icon-instagram.svg";
-import social2 from "../assets/Icon-Linkedin.svg";
+import social2 from "../assets/icon-Linkedin.svg";
 import social3 from "../assets/Vector1.svg";
 
 import img1 from "../assets/image 46.png";
