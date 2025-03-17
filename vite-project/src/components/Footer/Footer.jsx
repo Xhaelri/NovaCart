@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { CiInstagram } from "react-icons/ci";
 import { RiLinkedinLine } from "react-icons/ri";
 import { FaRegCopyright } from "react-icons/fa";
-import icon1 from "../../assets/Icon-send.svg";
+import icon1 from "../../assets/send.svg";
 
 const Footer = () => {
   return (
