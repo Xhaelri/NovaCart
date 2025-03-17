@@ -1,4 +1,3 @@
-
 import { db } from "../Services/UserAuthFirebase";
 import {
   collection,
@@ -12,15 +11,20 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
+
 const getProductById = async (id) => {
   try {
-
-
     const productDoc = doc(db, "products", id);
     const snapshot = await getDoc(productDoc);
 
     if (snapshot.exists()) {
-      return { id: snapshot.id, ...snapshot.data(), createAt: snapshot.data()?snapshot.data().createAt.toDate().toISOString():null }; // Return with correct ID
+      const data = snapshot.data();
+      return { 
+        id: snapshot.id, 
+        ...data, 
+        price: parseFloat(data.price) || 0, // تحويل السعر إلى رقم
+        createAt: data.createAt ? data.createAt.toDate().toISOString() : null 
+      };
     } else {
       console.error("Product not found with ID:", id);
       throw new Error("Product not found");
@@ -36,9 +40,17 @@ const getAllProducts = async () => {
     const productsCollection = collection(db, "products");
     const q = query(productsCollection, orderBy("createAt", "desc"));
     const snapshot = await getDocs(q);
+
     const products = snapshot.docs.map((doc) => {
-      return { id: doc.id, ...doc.data(), createAt: doc.data()?doc.data().createAt.toDate().toISOString():null };
+      const data = doc.data();
+      return { 
+        id: doc.id, 
+        ...data, 
+        price: parseFloat(data.price) || 0, // تحويل السعر إلى رقم
+        createAt: data.createAt ? data.createAt.toDate().toISOString() : null 
+      };
     });
+
     return products;
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -49,7 +61,12 @@ const getAllProducts = async () => {
 const addProduct = async (product) => {
   try {
     const productsCollection = collection(db, "products");
-    const docRef = await addDoc(productsCollection,{ ...product, createAt: serverTimestamp(),price: Number(product.price)},);
+    const docRef = await addDoc(productsCollection, { 
+      ...product, 
+      createAt: serverTimestamp(),
+      price: parseFloat(product.price) || 0 // تحويل السعر إلى رقم عند الإضافة
+    });
+
     return { id: docRef.id, ...product };
   } catch (error) {
     console.error("Error adding product:", error);
@@ -59,9 +76,13 @@ const addProduct = async (product) => {
 
 const updateProduct = async (id, product) => {
   try {
-
     const productDoc = doc(db, "products", id);
-    await updateDoc(productDoc, { ...product, createAt: serverTimestamp()});
+    await updateDoc(productDoc, { 
+      ...product, 
+      price: parseFloat(product.price) || 0, // تحويل السعر إلى رقم عند التحديث
+      createAt: serverTimestamp()
+    });
+
     return { id, ...product };
   } catch (error) {
     console.error("Error updating product:", error);
