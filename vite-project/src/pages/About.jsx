@@ -1,21 +1,21 @@
 import { useState } from "react";
 import about from "../assets/about.png";
-import icon1 from "../assets/icon-Customer-service.svg";
+import icon1 from "../assets/Customer-service.svg";
 import icon2 from "../assets/delivery.svg";
-import icon3 from "../assets/icon-secure.svg";
+import icon3 from "../assets/secure.svg";
 
-import icon4 from "../assets/Icon_shop.svg";
-import icon5 from "../assets/Icon-Sale-Hollow-White.svg";
-import icon6 from "../assets/icon-Shopping bag.svg";
-import icon7 from "../assets/Icon-Moneybag.svg";
+import icon4 from "../assets/shop.svg";
+import icon5 from "../assets/Sale-Hollow-White.svg";
+import icon6 from "../assets/Shopping bag.svg";
+import icon7 from "../assets/Moneybag.svg";
 
-import icon4b from "../assets/Icon_shop_black_hollow.svg";
-import icon5b from "../assets/icon-Sale.svg";
-import icon6b from "../assets/Icon-Shopping-Bag-Black.svg";
-import icon7b from "../assets/icon-Moneybag-Black.svg";
+import icon4b from "../assets/shop_black_hollow.svg";
+import icon5b from "../assets/Sale.svg";
+import icon6b from "../assets/Shopping-Bag-Black.svg";
+import icon7b from "../assets/Moneybag-Black.svg";
 
-import social1 from "../assets/Icon-instagram.svg";
-import social2 from "../assets/Icon-Linkedin.svg";
+import social1 from "../assets/instagram.svg";
+import social2 from "../assets/Linkedin.svg";
 import social3 from "../assets/Vector1.svg";
 
 import img1 from "../assets/image 46.png";
