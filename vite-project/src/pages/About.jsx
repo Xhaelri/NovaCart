@@ -14,7 +14,7 @@ import icon5b from "../assets/Icon-Sale.svg";
 import icon6b from "../assets/Icon-Shopping-Bag-Black.svg";
 import icon7b from "../assets/Icon-Moneybag-Black.svg";
 
-import social1 from "../assets/Icon-instagram.svg";
+import social1 from "../assets/icon-instagram.svg";
 import social2 from "../assets/Icon-Linkedin.svg";
 import social3 from "../assets/Vector1.svg";
 
