@@ -1,7 +1,7 @@
 import { useState } from "react";
 import about from "../assets/about.png";
 import icon1 from "../assets/Icon-Customer service.svg";
-import icon2 from "../assets/icon-delivery.svg";
+import icon2 from "../assets/Icon-delivery.svg";
 import icon3 from "../assets/Icon-secure.svg";
 
 import icon4 from "../assets/icon_shop.svg";
@@ -14,8 +14,8 @@ import icon5b from "../assets/Icon-Sale.svg";
 import icon6b from "../assets/Icon-Shopping-Bag-Black.svg";
 import icon7b from "../assets/Icon-Moneybag-Black.svg";
 
-import social1 from "../assets/icon-instagram.svg";
-import social2 from "../assets/icon-Linkedin.svg";
+import social1 from "../assets/Icon-instagram.svg";
+import social2 from "../assets/Icon-Linkedin.svg";
 import social3 from "../assets/Vector1.svg";
 
 import img1 from "../assets/image 46.png";
@@ -119,9 +119,9 @@ const About = () => {
         </div>
 
         <div className="flex justify-between my-35">
-          <div  className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5">
             <div className="bg-[#F5F5F5] w-[370px] h-[420px] flex justify-center items-end rounded-sm">
-              <img src={img1}  alt="" />
+              <img src={img1} alt="" />
             </div>
             <div className="flex flex-col text-black gap-2">
               <h1 className="text-3xl font-regular">Tom Cruise</h1>
@@ -135,7 +135,7 @@ const About = () => {
           </div>
           <div className="flex flex-col gap-5">
             <div className="bg-[#F5F5F5] w-[370px] h-[420px] flex justify-center items-end rounded-sm">
-              <img src={img3}  alt="" />
+              <img src={img3} alt="" />
             </div>
             <div className="flex flex-col text-black gap-2">
               <h1 className="text-3xl font-regular">Emma Watson</h1>
@@ -149,7 +149,7 @@ const About = () => {
           </div>
           <div className="flex flex-col gap-5">
             <div className="bg-[#F5F5F5] w-[370px] h-[420px] flex justify-center items-end rounded-sm">
-              <img src={img2}  alt="" />
+              <img src={img2} alt="" />
             </div>
             <div className="flex flex-col text-black gap-2">
               <h1 className="text-3xl font-regular">Will Smith</h1>

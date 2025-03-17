@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { CiInstagram } from "react-icons/ci";
 import { RiLinkedinLine } from "react-icons/ri";
 import { FaRegCopyright } from "react-icons/fa";
-import icon1 from "../../assets/icon-send.svg";
+import icon1 from "../../assets/Icon-send.svg";
 
 const Footer = () => {
   return (
@@ -23,7 +23,11 @@ const Footer = () => {
               type="text"
               placeholder="Enter your email"
             />
-            <img src={icon1} alt="" className="w-10 h-10 pr-3  cursor-pointer" />
+            <img
+              src={icon1}
+              alt=""
+              className="w-10 h-10 pr-3  cursor-pointer"
+            />
           </div>
         </div>
         <div className="mb-4">

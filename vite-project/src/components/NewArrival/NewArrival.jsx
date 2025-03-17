@@ -4,7 +4,7 @@ import img2 from "../../assets/Frame 685.png";
 import img3 from "../../assets/Frame 686.png";
 import img4 from "../../assets/Frame 687.png";
 import icon1 from "../../assets/Icon-Customer service.svg";
-import icon2 from "../../assets/icon-delivery.svg";
+import icon2 from "../../assets/Icon-delivery.svg";
 import icon3 from "../../assets/Icon-secure.svg";
 import { FiArrowUp } from "react-icons/fi";
 const NewArrival = () => {
@@ -17,8 +17,8 @@ const NewArrival = () => {
             <span className="text-red-700 text-sm">Categories</span>
           </div>
           <div className="flex space-x-2.5 justify-between items-center">
-          <h1 className="text-3xl font-semibold text-black mt-5 font-inter">
-          Browse By Category
+            <h1 className="text-3xl font-semibold text-black mt-5 font-inter">
+              Browse By Category
             </h1>
           </div>
         </div>
@@ -75,7 +75,6 @@ const NewArrival = () => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
