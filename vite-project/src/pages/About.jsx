@@ -1,7 +1,7 @@
 import { useState } from "react";
 import about from "../assets/about.png";
 import icon1 from "../assets/icon-Customer-service.svg";
-import icon2 from "../assets/icon-delivery.svg";
+import icon2 from "../assets/delivery.svg";
 import icon3 from "../assets/icon-secure.svg";
 
 import icon4 from "../assets/Icon_shop.svg";
