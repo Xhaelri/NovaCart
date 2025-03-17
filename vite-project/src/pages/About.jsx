@@ -25,7 +25,7 @@ import img3 from "../assets/image 51.png";
 import { CiTwitter } from "react-icons/ci";
 
 const About = () => {
-  //State to track hover for each icon
+  // State to track hover for each icon
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // Function to handle hover state
