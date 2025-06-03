@@ -13,13 +13,14 @@ import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import WishList from "./pages/WishList";
 import Login from "./components/Login/Login";
-import Account from "./pages/Account";
-import ProtectedRoute from "./pages/ProtectedRoute";
 import AppLayout from "./components/AppLayout/AppLayout";
 import AddProduct from "./components/ProductsHandling/AddProduct";
 import { ToastContainer } from "react-toastify";
-import AdminPanel from "./components/ProductsHandling/AdminPanel";
 import NotFound from "./pages/NotFound";
+import AdminPanel from "./components/ProductsHandling/AdminPanel";
+import NotAuthorized from "./pages/NotAuthorized";
+import PrivateRoute from "./components/ProtectedRoute/PrivateRoute";
+import CheckOut from "./pages/CheckOut";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,10 +56,6 @@ const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
-        path: "/adminpanel",
-        element: <AdminPanel />,
-      },
-      {
         path: "/products/:id",
         element: <ProductDetails />,
       },
@@ -79,12 +76,25 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/account",
-        element: (
-          <ProtectedRoute>
-            <Account />
-          </ProtectedRoute>
-        ),
+        path: "/checkout",
+        element: <CheckOut />,
+      },
+      {
+        path: "/checkout:uid",
+        element: <CheckOut />,
+      },
+      {
+        element: <PrivateRoute requiredRole="admin" />,
+        children: [
+          {
+            path: "/adminpanel",
+            element: <AdminPanel />,
+          },
+        ],
+      },
+      {
+        path: "/unauthorized",
+        element: <NotAuthorized />, 
       },
       {
         path: "*",
@@ -102,20 +112,20 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <RouterProvider router={router} />
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </ThemeProvider>
       </QueryClientProvider>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </Provider>
   );
 };

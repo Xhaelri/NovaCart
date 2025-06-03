@@ -1,25 +1,24 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { signup, login, logout,getUser } from "../../Services/UserAuthFirebase";
+import { signup, login, logout, getUser } from "../../Services/UserAuthFirebase";
 
-export const fetchLogin = createAsyncThunk(
-  "auth/login",
-  async (user, thunkAPI) => {
-    try {
-      await login(user.email, user.password);
-      return { email: user.email };
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const fetchLogin = createAsyncThunk("auth/login", async (user, thunkAPI) => {
+  try {
+    const userData = await login(user.email, user.password);
+    localStorage.setItem("user", JSON.stringify(userData)); // Sync with local storage
+    return userData; // Ensure role is stored in Redux
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
-);
+});
+
 
 export const fetchRegister = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
-      await signup(user.name, user.email, user.password);
-      return { name: user.name, email: user.email };
+      // Store the full user data returned from signup
+      const userData = await signup(user.name, user.email, user.password);
+      return userData; // Return complete user object with role
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -14,7 +14,7 @@ const Footer = () => {
     <div className="">
       <div className="bg-black text-white grid grid-cols-5 gap-4 pt-[80px] px-[137px]">
         <div className="mb-4">
-          <h1 className="mb-4 font-semibold text-xl">Exclusive</h1>
+          <h1 className="mb-4 font-semibold text-xl">Santoryu</h1>
           <h3 className="mb-4 font-light">Subscribe</h3>
           <p className="mb-4 font-light">Get 10% off your first order</p>
           <div className="relative flex items-center  bg-transparent border border-gray-300 rounded-sm max-w-[220px]  ">

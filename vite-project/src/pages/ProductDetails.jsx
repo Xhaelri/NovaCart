@@ -18,6 +18,7 @@ const ProductDetail = () => {
   const [user, setUser] = useState(getUser());
   const { product, isLoading, isError } = useProductById(id);
   const dispatch = useDispatch();
+  
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
 
@@ -298,7 +299,6 @@ const ProductDetail = () => {
             </div>
             <button
               className="bg-red-500 text-white py-2 px-6 rounded"
-              onClick={handleAddToCart}
             >
               Buy Now
             </button>

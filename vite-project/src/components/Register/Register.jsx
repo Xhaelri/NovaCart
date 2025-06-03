@@ -2,12 +2,14 @@ import { useForm } from "react-hook-form";
 import registerImg from "../../assets/register.png";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "../../redux/slices/authSlice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { registerLoading, registerError } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -20,7 +22,9 @@ const Register = () => {
     dispatch(fetchRegister(data))
       .unwrap()
       .then(() => {
-        alert("Registration successful");
+        toast.success("registration succeeded");
+        navigate("/login");
+        
       })
       .catch((error) => {
         console.error("Registration failed:", error);

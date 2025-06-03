@@ -1,19 +1,18 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
-import {  AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 
 import { useState } from "react";
 import { useTheme } from "../../Context/ThemeProvider";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchLogout } from "../../redux/slices/authSlice";
+import { useSelector } from "react-redux";
+import AccountMenu from "../AccountMenu/AccountMenu";
+
 const NavBar = () => {
   const { theme } = useTheme();
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
-
-  const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -22,23 +21,10 @@ const NavBar = () => {
   const hideIcons =
     location.pathname === "/signup" || location.pathname === "/login";
 
-  const dispatch = useDispatch();
-
-  const handleLogOut = (data) => {
-    dispatch(fetchLogout(data))
-      .unwrap()
-      .then(() => {
-        alert("Logout successful");
-      })
-      .catch((error) => {
-        console.error("Logout failed:", error);
-      });
-  };
-
   return (
     <div>
       <div className="flex flex-row justify-between mt-6 items-center">
-        <h1 className="font-bold text-2xl">Exclusive</h1>
+        <h1 className="font-bold text-2xl">Santoryu</h1>
         <div className="list-none flex flex-row justify-between space-x-8">
           <ul className="md:flex items-start gap-5 font-medium">
             <NavLink to="/">
@@ -73,14 +59,16 @@ const NavBar = () => {
                 }`}
               />{" "}
             </NavLink>
-            <NavLink to="/signup">
-              <li className="py-1 font-light">Sign Up</li>
-              <hr
-                className={`border-none outline-none h-[1.5px] rounded-[50px] w-3/5 m-auto hidden ${
-                  theme === "dark" ? "bg-white" : "bg-gray-700"
-                }`}
-              />{" "}
-            </NavLink>
+            {!user && (
+              <NavLink to="/signup">
+                <li className="py-1 font-light">Sign Up</li>
+                <hr
+                  className={`border-none outline-none h-[1.5px] rounded-[50px] w-3/5 m-auto hidden ${
+                    theme === "dark" ? "bg-white" : "bg-gray-700"
+                  }`}
+                />
+              </NavLink>
+            )}
           </ul>
         </div>
         <div className="flex flex-row space-x-2.5 items-center">
@@ -122,9 +110,7 @@ const NavBar = () => {
             <div className="flex flex-row items-center space-x-1.5">
               <div className="relative">
                 <NavLink to="/wishlist">
-                  <AiOutlineHeart
-                    className="cursor-pointer hover:text-[#DB4444] w-[22px] h-6"
-                  />
+                  <AiOutlineHeart className="cursor-pointer hover:text-[#DB4444] w-[22px] h-6" />
                 </NavLink>
                 {fav.totalQuantity > 0 ? (
                   <span className="h-4 w-4 bg-[#DB4444] rounded-full absolute top-[-5px] right-[-5px] text-[9px] flex justify-center items-center text-white">
@@ -136,9 +122,7 @@ const NavBar = () => {
               </div>
               <div className="relative">
                 <NavLink to="/cart">
-                  <IoCartOutline 
-                    className="cursor-pointer hover:text-gray-500 -me-1  w-6 h-6"
-                  />
+                  <IoCartOutline className="cursor-pointer hover:text-gray-500 -me-1  w-6 h-6" />
                 </NavLink>
                 {cart.totalQuantity > 0 ? (
                   <span className="h-4 w-4 bg-[#DB4444] rounded-full absolute top-[-5px] right-[-5px] text-[9px] flex justify-center items-center text-white">
@@ -168,50 +152,7 @@ const NavBar = () => {
                       }}
                       className="absolute right-0 mt-2 w-56 divide-y divide-gray-100 rounded-md shadow-lg bg-black/65 backdrop-blur-3xl ring-1 ring-black/5 z-10"
                     >
-                      <div className="p-2">
-                        <a
-                          href="#"
-                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                          role="menuitem"
-                          onClick={() => navigate("/account")}
-                        >
-                          Manage My Account
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                          role="menuitem"
-                          onClick={() => navigate("/addproduct")}
-                        >
-                          Add New Product
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                          role="menuitem"
-                          onClick={() => navigate("/adminpanel")}
-                        >
-                          Admin Panel
-                        </a>
-
-                        <a
-                          href="#"
-                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                          role="menuitem"
-                        >
-                          Unpublish Product
-                        </a>
-                        <a
-                          href="#"
-                          className="block rounded-lg px-4 py-2 text-sm text-white hover:bg-gray-50 hover:text-gray-700"
-                          role="menuitem"
-                          onClick={handleLogOut}
-                        >
-                          Logout
-                        </a>
-                      </div>
+                      <AccountMenu />
                     </div>
                   )}
                 </div>

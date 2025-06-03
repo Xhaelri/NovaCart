@@ -5,6 +5,7 @@ import { motion } from "framer-motion"; // For smooth transitions
 
 const AdminPanel = () => {
   const [activeComponent, setActiveComponent] = useState(null);
+  console.log("AdminPanel rendering. Active Component:", activeComponent);
 
   return (
     <div className="flex   min-h-screen">

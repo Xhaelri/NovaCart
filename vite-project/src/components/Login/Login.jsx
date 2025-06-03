@@ -4,6 +4,7 @@ import registerImg from "../../assets/register.png";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { fetchLogin } from "../../redux/slices/authSlice";
+import { getUser } from "../../Services/UserAuthFirebase";
 const Login = () => {
   const { loginError, loginLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -18,9 +19,12 @@ const Login = () => {
   const onSubmit = (data) => {
     dispatch(fetchLogin(data))
       .unwrap()
-      .then(() => {
-        console.log("Login successful");
-        navigate("/");
+      .then((user) => {
+        if (user.role === "admin") {
+          navigate("/adminpanel");
+        } else {
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.error("Login failed:", error);
@@ -38,7 +42,7 @@ const Login = () => {
             <div className="w-full bg-white md:mt-0 sm:max-w-md xl:p-0 ">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-2xl  leading-7 tracking-widest text-black md:text-3xl font-medium ">
-                  Log in to Exclusive
+                  Log in to Santoryu
                 </h1>
                 <p className="text-md font-[400] text-black ">
                   Enter your details below

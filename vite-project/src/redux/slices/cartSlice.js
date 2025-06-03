@@ -66,6 +66,7 @@ const cartSlice = createSlice({
         }
       }
     },
+    
   },
 });
 
