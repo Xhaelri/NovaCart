@@ -9,8 +9,7 @@ import hero4 from "../../assets/hero4.png";
 
 const Hero = () => {
   return (
-    <div className="flex flex-row justify-between mb-25">
-      {/* Sidebar Menu */}
+    <div className="flex flex-row space-x-40 mb-25">
       <div className="border-e-2 border-gray-200 pt-13 -ms-2">
         <ul className="menu bg-transparent rounded-box w-56 text-black p-0">
           <li>
@@ -63,7 +62,6 @@ const Hero = () => {
         </ul>
       </div>
 
-      {/* Hero Carousel */}
       <div className="pt-10 max-w-[965px] max-h-[350px]">
         <Carousel
           showArrows={false}
@@ -85,19 +83,19 @@ const Hero = () => {
             );
           }}
         >
-  <div className="w-[965px] h-[350px]">
+  <div className="w-[965px] h-[400px]">
     <img src={hero6} alt="Slide 1" className="w-full h-full object-center" />
   </div>
-  <div className="w-[965px] h-[350px]">
+  <div className="w-[965px] h-[400px]">
     <img src={hero1} alt="Slide 2" className="w-full h-full object-center" />
   </div>
-  <div className="w-[965px] h-[350px]">
+  <div className="w-[965px] h-[400px]">
     <img src={hero2} alt="Slide 3" className="w-full h-full object-center" />
   </div>
-  <div className="w-[965px] h-[350px]">
+  <div className="w-[965px] h-[400px]">
     <img src={hero3} alt="Slide 4" className="w-full h-full object-center" />
   </div>
-  <div className="w-[965px] h-[350px]">
+  <div className="w-[965px] h-[400px]">
     <img src={hero4} alt="Slide 5" className="w-full h-full object-center" />
   </div>
         </Carousel>

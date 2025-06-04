@@ -163,7 +163,7 @@ const NavBar = () => {
                   ref={searchRef}
                 />
                 <div className="absolute inset-y-0 end-0 flex items-center pe-4">
-                  <button type="submit" className="cursor-pointer">
+                  <button onClick={(e)=>{e.preventDefault()}} type="submit" className="cursor-pointer">
                     <svg
                       className="w-4 h-4 text-black"
                       aria-hidden="true"
