@@ -3,12 +3,16 @@ import { IoCartOutline } from "react-icons/io5";
 import { AiOutlineHeart } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 
-import { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "../../Context/ThemeProvider";
 import { useSelector } from "react-redux";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import useGetAllProducts from "../../Hooks/useGetAllProducts";
+import SearchList from "./SearchList";
 
 const NavBar = () => {
+  const searchRef = useRef();
+  const searchContainerRef = useRef();
   const { theme } = useTheme();
   const fav = useSelector((state) => state.fav);
   const cart = useSelector((state) => state.cart);
@@ -20,6 +24,71 @@ const NavBar = () => {
   const location = useLocation();
   const hideIcons =
     location.pathname === "/signup" || location.pathname === "/login";
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false); // New state for showing/hiding search results
+
+  const { products } = useGetAllProducts();
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(e.target)
+      ) {
+        setShowSearchResults(false);
+      }
+    };
+
+    window.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setFilteredProducts([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const lowerCaseSearchQuery = searchQuery.toLowerCase();
+
+    const results = products?.filter((product) => {
+      const titleMatches = product.title
+        ?.toLowerCase()
+        .includes(lowerCaseSearchQuery);
+      const descriptionMatches = product.description
+        ?.toLowerCase()
+        .includes(lowerCaseSearchQuery);
+      return titleMatches || descriptionMatches;
+    });
+
+    setFilteredProducts(results || []);
+    if (
+      searchQuery.trim() !== "" &&
+      (results?.length > 0 || results?.length === 0)
+    ) {
+      setShowSearchResults(true);
+    }
+  }, [searchQuery, products]);
 
   return (
     <div>
@@ -73,7 +142,9 @@ const NavBar = () => {
         </div>
         <div className="flex flex-row space-x-2.5 items-center">
           <div>
-            <form className="max-w-md mx-auto">
+            <form className="max-w-md mx-auto" ref={searchContainerRef}>
+              {" "}
+              {/* Attach ref to the form */}
               <label htmlFor="default-search" className="sr-only">
                 Search
               </label>
@@ -84,9 +155,15 @@ const NavBar = () => {
                   className="block w-full min-w-[250px] p-2 ps-3 text-xs text-gray-900 border-none rounded-[4px] bg-[#F5F5F5] focus:ring-0 focus:outline-none"
                   placeholder="What are you looking for?"
                   required
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                  }}
+                  onFocus={() => setShowSearchResults(true)}
+                  ref={searchRef}
                 />
                 <div className="absolute inset-y-0 end-0 flex items-center pe-4">
-                  <button className="cursor-pointer">
+                  <button type="submit" className="cursor-pointer">
                     <svg
                       className="w-4 h-4 text-black"
                       aria-hidden="true"
@@ -98,11 +175,20 @@ const NavBar = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth="2"
-                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                        d="m19 19-4-4m0-7A7 7 1 1 1 1 8a7 7 0 0 1 14 0Z"
                       />
                     </svg>
                   </button>
                 </div>
+              </div>
+              <div className="relative">
+                {showSearchResults && searchQuery.trim() !== "" && (
+                  <SearchList searchResults={filteredProducts} />
+                )}
+
+                {/* {showSearchResults && searchQuery.trim() !== "" && filteredProducts.length === 0 && (
+                <p className="text-md text-gray-500 pl-5 absolute">No results found.</p>
+              )} */}
               </div>
             </form>
           </div>

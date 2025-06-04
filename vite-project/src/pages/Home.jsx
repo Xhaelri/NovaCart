@@ -8,6 +8,8 @@ import OurProducts from "../components/OurProducts/OurProducts";
 import NewArrival from "../components/NewArrival/NewArrival";
 
 const Home = () => {
+
+  
   return (
     <div>
       <div className="mx-4 sm:mx-[10%]">
