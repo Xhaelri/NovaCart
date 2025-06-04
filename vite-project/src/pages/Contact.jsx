@@ -51,8 +51,8 @@ const Contact = () => {
           </div>
           <div className="text-black flex flex-col gap-5 mb-5">
             <p>Fill out our form and we will contact you within 24 hours.</p>
-            <p>Emails: customer@Santoryu.com</p>
-            <p>Emails: support@Santoryu.com</p>
+            <p>Emails: customer@NovaCart.com</p>
+            <p>Emails: support@NovaCart.com</p>
           </div>
         </div>
       </div>

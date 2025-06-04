@@ -24,7 +24,7 @@ const NavBar = () => {
   return (
     <div>
       <div className="flex flex-row justify-between mt-6 items-center">
-        <h1 className="font-bold text-2xl">Santoryu</h1>
+        <h1 className="font-bold text-2xl">NovaCart</h1>
         <div className="list-none flex flex-row justify-between space-x-8">
           <ul className="md:flex items-start gap-5 font-medium">
             <NavLink to="/">

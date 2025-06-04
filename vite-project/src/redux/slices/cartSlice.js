@@ -10,7 +10,9 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const product = action.payload;
-      const existingProduct = state.products.find((item) => item.id === product.id);
+      const existingProduct = state.products.find(
+        (item) => item.id === product.id
+      );
 
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -23,14 +25,14 @@ const cartSlice = createSlice({
     },
     removeFromCart: (state, action) => {
       const product = action.payload;
-      const existingProduct = state.products.find((item) => item.id === product.id);
+      const existingProduct = state.products.find(
+        (item) => item.id === product.id
+      );
 
       if (existingProduct) {
-        if (existingProduct.quantity > 1) {
-          existingProduct.quantity -= 1;
-        } else {
-          state.products = state.products.filter((item) => item.id !== product.id);
-        }
+        state.products = state.products.filter(
+          (item) => item.id !== product.id
+        );
 
         state.totalQuantity -= 1;
         state.totalPrice -= product.price;
@@ -38,7 +40,9 @@ const cartSlice = createSlice({
     },
     increaseQuantity: (state, action) => {
       const product = action.payload;
-      const existingProduct = state.products.find((item) => item.id === product.id);
+      const existingProduct = state.products.find(
+        (item) => item.id === product.id
+      );
 
       if (existingProduct) {
         existingProduct.quantity += 1;
@@ -52,7 +56,9 @@ const cartSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       const product = action.payload;
-      const existingProduct = state.products.find((item) => item.id === product.id);
+      const existingProduct = state.products.find(
+        (item) => item.id === product.id
+      );
 
       if (existingProduct) {
         if (existingProduct.quantity > 1) {
@@ -60,15 +66,17 @@ const cartSlice = createSlice({
           state.totalQuantity -= 1;
           state.totalPrice -= product.price;
         } else {
-          state.products = state.products.filter((item) => item.id !== product.id);
+          state.products = state.products.filter(
+            (item) => item.id !== product.id
+          );
           state.totalQuantity -= 1;
           state.totalPrice -= product.price;
         }
       }
     },
-    
   },
 });
 
-export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } = cartSlice.actions;
+export const { addToCart, removeFromCart, increaseQuantity, decreaseQuantity } =
+  cartSlice.actions;
 export default cartSlice.reducer;

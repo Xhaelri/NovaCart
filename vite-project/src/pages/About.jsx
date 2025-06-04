@@ -74,16 +74,16 @@ const About = () => {
             Our Story
           </h1>
           <p className="text-black mb-3">
-            Launched in 2015, Santoryu is South Asia’s premier online shopping
+            Launched in 2015, NovaCart is South Asia’s premier online shopping
             marketplace with an active presence in Bangladesh. Supported by a
             wide range of tailored marketing, data, and service solutions,
-            Santoryu has 10,500 sellers and 300 brands and serves 3 million
+            NovaCart has 10,500 sellers and 300 brands and serves 3 million
             customers across the region.
           </p>
           <br />
           <p className="text-black">
-            Santoryu has more than 1 Million products to offer, growing at a
-            very fast pace. Santoryu offers a diverse assortment in categories
+            NovaCart has more than 1 Million products to offer, growing at a
+            very fast pace. NovaCart offers a diverse assortment in categories
             ranging from consumer.
           </p>
         </div>

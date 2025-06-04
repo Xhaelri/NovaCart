@@ -42,7 +42,7 @@ const Login = () => {
             <div className="w-full bg-white md:mt-0 sm:max-w-md xl:p-0 ">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-2xl  leading-7 tracking-widest text-black md:text-3xl font-medium ">
-                  Log in to Santoryu
+                  Log in to NovaCart
                 </h1>
                 <p className="text-md font-[400] text-black ">
                   Enter your details below

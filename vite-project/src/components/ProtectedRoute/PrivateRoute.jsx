@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { hasRole } from "../../Services/UserAuthFirebase";
+import { hasRole } from "../../Services/UserAuthFirebase"; // Ensure this import is correct
 
 const PrivateRoute = ({ requiredRole }) => {
   const user = useSelector((state) => state.auth.user);

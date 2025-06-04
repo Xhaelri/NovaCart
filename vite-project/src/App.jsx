@@ -80,10 +80,6 @@ const router = createBrowserRouter([
         element: <CheckOut />,
       },
       {
-        path: "/checkout:uid",
-        element: <CheckOut />,
-      },
-      {
         element: <PrivateRoute requiredRole="admin" />,
         children: [
           {

@@ -5,9 +5,7 @@ import CheckOutItem from "../components/CheckOut/CheckOutItem";
 
 const CheckOut = () => {
   const cart = useSelector((state) => state.cart);
-  const auth = useSelector((state)=> state.auth);
 
-  const authId = user.id
 
   const {
     register,
@@ -232,9 +230,9 @@ const CheckOut = () => {
           <div className="flex flex-col items-start">
             <div className="  w-full  ">
               <table className="w-full">
-                {cart.products?.map((product) => (
+                {/* {cart.products?.map((product) => (
                   <CheckOutItem key={product.id} product={product} />
-                ))}
+                ))} */}
               </table>
             </div>
           </div>
